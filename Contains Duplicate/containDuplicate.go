@@ -1,11 +1,7 @@
 package main
 
-import "fmt"
-
 func main() {
 
-	nums := []int{}
-	fmt.Println(containsDuplicateOne(nums))
 }
 
 func containsDuplicateOne(nums []int) bool {

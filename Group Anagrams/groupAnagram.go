@@ -1,8 +1,7 @@
 package main
 
 func main() {
-	strs := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
-	groupAnagram(strs)
+
 }
 
 func groupAnagram(strs []string) [][]string {
