@@ -5,26 +5,33 @@ func main() {
 }
 
 func longestConsecutive(nums []int) int {
-	set := make(map[int]bool)
-
+	// cоздаем набор из массива nums.
+	set := make(map[int]struct{})
 	for _, num := range nums {
-		set[num] = true
+		set[num] = struct{}{}
 	}
 
+	// переменная для ответа
 	longest := 0
 
-	for num := range set {
-		if set[num-1] {
-			continue
+	// проходимся по набору
+	for n := range set {
+		// мы проверяем, есть ли n-1 в наборе.
+		// если есть, то n не является началом последовательности, и мы переходим к следующему числу.
+		if _, ok := set[n-1]; !ok {
+			// в противном случае мы увеличиваем n в цикле,
+			// чтобы увидеть, сохранено ли следующее последовательное значение в числах.
+			seqLen := 1
+			for {
+				if _, ok := set[n+seqLen]; ok {
+					seqLen++
+					continue
+				}
+				// обновляем переменную
+				longest = max(longest, seqLen)
+				break
+			}
 		}
-
-		curlen := 0
-
-		for set[num] {
-			curlen++
-			num++
-		}
-		longest = max(longest, curlen)
 	}
 	return longest
 }
