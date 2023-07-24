@@ -7,6 +7,16 @@ type TreeNode struct {
 }
 
 func sameTree(p, q *TreeNode) bool {
+	// if p == nil && q == nil {
+	// 	return true
+	// }
+
+	// if p == nil || q == nil || p.Val != q.Val {
+	// 	return false
+	// }
+
+	// return sameTree(p.Left, q.Left) && sameTree(p.Right, q.Left)
+
 	pQueue := []*TreeNode{p}
 	qQueue := []*TreeNode{q}
 
