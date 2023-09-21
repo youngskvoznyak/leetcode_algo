@@ -12,10 +12,8 @@ func findMin(nums []int) int {
 		p := (l + r) / 2
 		if nums[p] >= nums[0] {
 			l = p + 1
-		} else {
-			if nums[p] < res {
-				res = nums[p]
-			}
+		} else if nums[p] < res {
+			res = nums[p]
 			r = p - 1
 		}
 	}
