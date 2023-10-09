@@ -5,15 +5,13 @@ func main() {
 }
 
 func rob(nums []int) int {
-	if len(nums) == 1 {
-		return nums[0]
-	}
-	l1, l2 := nums[0], max(nums[0], nums[1])
+	prev_1, prev_2 := 0, 0
 
-	for i := 2; i < len(nums); i++ {
-		l2, l1 = max(l1+nums[i], l2), l2
+	for _, value := range nums {
+		tmp := max(prev_1+value, prev_2)
+		prev_1, prev_2 = prev_2, tmp
 	}
-	return l2
+	return prev_2
 }
 
 func max(a, b int) int {
