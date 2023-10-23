@@ -2,7 +2,7 @@ package main
 
 type NumArray struct {
 	nums    []int
-	preSums []int
+	preSums []int // preSums[i] = nums[i] + preSums[i-1]
 }
 
 func Constructor(nums []int) NumArray {
