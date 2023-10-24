@@ -5,13 +5,21 @@ func main() {
 }
 
 func rob(nums []int) int {
-	prev_1, prev_2 := 0, 0
-
-	for _, value := range nums {
-		tmp := max(prev_1+value, prev_2)
-		prev_1, prev_2 = prev_2, tmp
+	if len(nums) == 0 {
+		return 0
 	}
-	return prev_2
+	if len(nums) == 1 {
+		return nums[0]
+	}
+	dp := make([]int, len(nums))
+	dp[0] = nums[0]
+	dp[1] = max(nums[0], nums[1])
+
+	for i := 2; i < len(dp); i++ {
+		dp[i] = max(nums[i]+dp[i-2], dp[i-1])
+	}
+	return dp[len(nums)-1]
+
 }
 
 func max(a, b int) int {
