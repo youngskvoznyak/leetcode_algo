@@ -16,16 +16,15 @@ func diameterOfBinaryTree(root *TreeNode) int {
 	return ans
 }
 
-func getHeight(node *TreeNode, ans *int) int {
-	if node == nil {
-		return -1
+func getHeight(root *TreeNode, ans *int) int {
+	if root == nil {
+		return 0
 	}
 
-	leftH := getHeight(node.Left, ans) + 1
-	rightH := getHeight(node.Right, ans) + 1
-	path := leftH + rightH
-	*ans = max(*ans, path)
-	return max(leftH, rightH)
+	left := getHeight(root.Left, ans)
+	right := getHeight(root.Right, ans)
+	*ans = max(*ans, left+right)
+	return max(left, right) + 1
 }
 
 func max(a, b int) int {
