@@ -15,16 +15,19 @@ func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
 		return false
 	}
 
-	return areEqualTree(root, subRoot) || isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
+	if isSameTree(root, subRoot) {
+		return true
+	}
+	return isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
 
 }
 
-func areEqualTree(n1, n2 *TreeNode) bool {
+func isSameTree(n1, n2 *TreeNode) bool {
 	if n1 == nil && n2 == nil {
 		return true
-	} else if n1 == nil || n2 == nil {
-		return false
-	} else {
-		return n1.Val == n2.Val && areEqualTree(n1.Left, n2.Left) && areEqualTree(n1.Right, n2.Right)
 	}
+	if n1 == nil || n2 == nil || n1.Val != n2.Val {
+		return false
+	}
+	return isSameTree(n1.Left, n2.Left) && isSameTree(n1.Right, n2.Right)
 }
